@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+  <button onclick="carregarSite('https://atracaodetalentos.totvs.app/talentosgrupoep/14/estagio-em-sistemas-da-informacao')">Abrir Site 1</button>
+  <button onclick="carregarSite('https://chatgpt.com/c/6840817f-0e90-8004-9bfd-d428f696a2e9')">Abrir Site 2</button>
+</div>
+
+<div id="janela">
+  <iframe id="iframe" src="" width="800" height="500" style="border: none;"></iframe>
+</div>
+<script>
+    function carregarSite(link) {
+    document.getElementById('iframe').src = link;
+}
+</script>
+</body>
+</html>

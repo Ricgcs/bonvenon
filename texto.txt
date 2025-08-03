@@ -1,0 +1,50 @@
+        `<div id="tela_branca">
+         <div id="topo_telaBranca">
+         Produtos
+         <hr id="hrProduto">
+         </div>        
+         <div id="divNomeAbreviatura">
+
+         <div id="divInputNome">
+         <h4 id="h4NomeProduto">Nome produto</h4>
+         <input id="inputNomeProduto" placeholder="Nome produto">
+         </div>
+
+         <div id="divInputAbreviatura">
+         <h4 id="h4Abreviacao">Abreviação</h4>
+         <input id="inputNomeAbreviatura" placeholder="Abreviatura">
+         </div>
+
+         </div>
+
+         <div id="divDescricao">
+         <h4 id="h4Descricao">Descrição</h4>
+       <input id="inputAreaDescricao" placeholder="Descrição">
+         </div>
+         <div id="divPrecoVendaFornecedor">
+
+         <div id="divInputCusto">
+        <h4 id="h4Custo">Custo</h4>
+        <input id="inputCusto" placeholder="Custo">
+         </div>
+
+         <div id="divInputVenda">
+        <h4 id="h4Venda">Venda</h4>
+        <input id="inputVenda" placeholder="Venda">         
+         </div>
+
+         <div id="divInputFornecedor">
+        <h4 id="h4Fornecedor">Fornecedor</h4>
+        <input id="inputFornecedor" placeholder="Fornecedor">
+         </div>
+
+        <div id="divInputTipoMaquina">
+        <h4 id="h4TipoMaquina">Tipo máquina</h4>
+        <input id="inputTipoMaquina" placeholder="Tipo máquina">
+         </div>
+         </div>
+            <div id="divButtonCadastroProduto">
+          <button id="ButtonCadastroFornecedor">+ Cadastro</button>
+          </div>
+
+        </div>`;

@@ -1,0 +1,224 @@
+</div>
+        <div id="tela_branca_pesquisa">
+        <div>
+        <h3>Campos</h3>
+        </div>
+        <hr id = "linhaDivisoriaPesquisa">
+        <div id="divParametrosMostrar">
+          <button id="btnAdicionarCampoMostrar">+</button>
+
+        </div>
+        <div>
+        <h3>Onde</h3>
+        
+        </div>
+        <hr id = "linhaDivisoriaPesquisa">
+
+        <div id="divParametrosBusca">
+        
+          <button id="btnAdicionarCampoBusca">+</button>
+       
+        </div>
+
+        <hr id = "linhaDivisoriaPesquisa">
+
+        <div id ="divButtonPesquisar">
+        <button id="buttonPesquisar">Pesquisar</button>
+        </div>
+        </div>
+        <div id="telaResultadoPesquisa">
+
+        </div>
+        `;
+        let qtd = 0;
+        const divParametroMostrar = document.getElementById(
+          "divParametrosMostrar"
+        );
+        const btnParametroMostrar = document.getElementById(
+          "btnAdicionarCampoMostrar"
+        );
+        const divTelaResultado = document.getElementById(
+          "telaResultadoPesquisa"
+        );
+
+        btnParametroMostrar.addEventListener("click", () => {
+          const campoMostrar = document.createElement("div");
+          campoMostrar.id = "campoMostrar";
+
+          const btnRemoverMostrar = document.createElement("button");
+          btnRemoverMostrar.textContent = "X";
+          btnRemoverMostrar.id = "btnRemoverMostrar";
+
+          const selectCampoMostrar = document.createElement("select");
+          selectCampoMostrar.id = "selectCampoMostrar";
+          const campos = document.querySelectorAll("h4");
+
+          campos.forEach((campo) => {
+            const option = document.createElement("option");
+            option.value = campo.dataset.value;
+            const label = campo.textContent || "Sem nome";
+            option.textContent = label;
+
+            selectCampoMostrar.appendChild(option);
+          });
+
+          campoMostrar.appendChild(selectCampoMostrar);
+          campoMostrar.appendChild(btnRemoverMostrar);
+          // Evento para remover o campo inteiro
+          btnRemoverMostrar.addEventListener("click", () => {
+            campoMostrar.remove();
+            qtd--;
+          });
+
+          if (qtd < 18) {
+            qtd++;
+            divParametroMostrar.insertBefore(campoMostrar, btnParametroMostrar);
+          } else {
+            alert("Quantidade máxima de parametros atingida");
+          }
+        });
+
+        let qtd2 = 0;
+        const divParametrosBusca =
+          document.getElementById("divParametrosBusca");
+        const btnParametroBusca = document.getElementById(
+          "btnAdicionarCampoBusca"
+        );
+        const tabela_res = document.createElement("table");
+        tabela_res.id = "tabela_res";
+
+        btnParametroBusca.addEventListener("click", async () => {
+          const campoBusca = document.createElement("div");
+          campoBusca.id = "campoBusca";
+
+          const selectCampoBusca = document.createElement("select");
+          selectCampoBusca.id = "selectCampoBusca";
+
+          const btnRemoverBuscar = document.createElement("button");
+          btnRemoverBuscar.textContent = "X";
+          btnRemoverBuscar.id = "btnRemoverBuscar";
+
+          const inputCampoBusca = document.createElement("input");
+          inputCampoBusca.id = "inputselectCampoBusca";
+
+          const campos = document.querySelectorAll("h4");
+
+          campos.forEach((campo) => {
+            const option = document.createElement("option");
+            option.value = campo.dataset.value;
+            const label = campo.textContent || "Sem nome";
+            option.textContent = label;
+
+            selectCampoBusca.appendChild(option);
+          });
+          const divControle = document.createElement("div");
+          divControle.id = "divControle";
+          divControle.appendChild(selectCampoBusca);
+          divControle.appendChild(btnRemoverBuscar);
+
+          campoBusca.appendChild(divControle);
+          campoBusca.appendChild(inputCampoBusca);
+
+            btnRemoverBuscar.addEventListener("click", () => {
+            campoBusca.remove();
+            qtd2--;
+          });
+          if (qtd2 < 18) {
+            qtd2++;
+            divParametrosBusca.insertBefore(campoBusca, btnParametroBusca);
+          } else {
+            alert("Quantidade máxima de parametros atingida");
+          }
+        });
+
+        document
+          .getElementById("buttonPesquisar")
+          .addEventListener("click", async () => {
+            // Limpa o container de resultados antes de adicionar uma nova tabela
+            divTelaResultado.replaceChildren();
+
+            // Cria a tabela nova
+            const tabela_res = document.createElement("table");
+            tabela_res.border = "1";
+
+            // Pega selects do parâmetro mostrar
+            const parametros = divParametroMostrar.querySelectorAll("select");
+            const parametrosSelect = Array.from(parametros).map((p) => p.value);
+
+            // Pega selects do campo de busca
+            const nomeCampo = divParametrosBusca.querySelectorAll("select");
+            const nomeCampoSelect = Array.from(nomeCampo).map((nc) => nc.value);
+
+            // Pega valores dos inputs
+            const valorCampo = divParametrosBusca.querySelectorAll("input");
+            const valorCampoSelect = Array.from(valorCampo).map((v) => v.value);
+
+            // Monta objeto para envio
+            const objPesquisa = {
+              onde: "loja",
+              valor1: parametrosSelect,
+              valor2: nomeCampoSelect,
+              valor3: valorCampoSelect,
+            };
+
+            console.log(objPesquisa);
+
+            try {
+              const pesq = await envio(
+                "http://localhost:3000/pesquisa/campos/bd",
+                objPesquisa
+              );
+
+              // Arrays para o head e body
+              let camposHead = [];
+              let camposBody = [];
+
+              // Processa os dados retornados
+              pesq.forEach((linha) => {
+                Object.entries(linha).forEach(([campo, valor]) => {
+                  if (!camposHead.includes(campo)) camposHead.push(campo);
+                  camposBody.push(valor);
+                });
+              });
+
+              let tamanhoHead = camposHead.length;
+              console.log(camposBody, camposHead, tamanhoHead);
+
+              // Monta o cabeçalho da tabela
+              const trHead = document.createElement("tr");
+              camposHead.forEach((campo) => {
+                const th = document.createElement("th");
+                th.textContent = campo;
+                trHead.appendChild(th);
+              });
+              tabela_res.appendChild(trHead);
+
+              // Monta o corpo da tabela
+              let contador = 0;
+              let trAtual = document.createElement("tr");
+
+              camposBody.forEach((dadosBody) => {
+                const novaTd = document.createElement("td");
+                novaTd.textContent = dadosBody;
+                trAtual.appendChild(novaTd);
+                contador++;
+
+                if (contador % tamanhoHead === 0) {
+                  tabela_res.appendChild(trAtual);
+                  trAtual = document.createElement("tr");
+                }
+              });
+
+              // Se sobraram células incompletas no final
+              if (trAtual.children.length > 0) {
+                tabela_res.appendChild(trAtual);
+              }
+
+              // Adiciona a tabela pronta ao div de resultados
+              divTelaResultado.appendChild(tabela_res);
+            } catch (error) {
+              console.log(error);
+            }
+          });
+
+        

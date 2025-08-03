@@ -1,0 +1,1909 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+body{
+}
+
+#corpo {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(189, 189, 189);
+  overflow: auto;
+  
+}
+
+#barra_direita {
+  width: 100%;
+  height: 200%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+#tela_branca {
+  width: 90%;
+  height: 50%;
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  border-radius: 1vw;
+}
+
+#topo_telaBranca {
+  padding: 1%;
+  width: auto;
+  height: 5%;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5vw;
+}
+
+#tela_branca_pesquisa{
+  width: 90%;
+  height: auto;
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  border-radius: 1vw;
+  margin-top: 2%;
+  padding: 1%;
+}
+
+
+#linhaDivisoriaPesquisa{
+  background-color: black;
+  width: 100%;
+  height: 0.1vw;
+  margin-bottom: 0.4%;
+}
+
+#divParametrosMostrar{
+  display: flex;
+  width: 100%;
+  height: 50%;
+  flex-direction:row;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+}
+
+#btnAdicionarCampoMostrar{
+width: 4%;
+height: 3vw;
+border-radius: 1vw;
+border: blue solid 2px;
+font-size: 2vw;
+background-color: transparent;
+color: blue;
+}
+
+#btnAdicionarCampoMostrar:hover{
+  background-color: rgb(187, 187, 187);
+}
+
+#btnRemoverMostrar{
+background-color : red;
+color : white;
+border : none;
+cursor : pointer;
+width : 1vw;
+height : 30%;
+border-radius : 1vw;
+}
+
+#btnRemoverBuscar{
+background-color : red;
+color : white;
+border : none;
+cursor : pointer;
+width : 1vw;
+height : 50%;
+border-radius : 1vw;
+}
+
+#divControle{
+  height: 100%;
+}
+
+#inputselectCampoBusca{
+  border: black solid 1px;
+  border-radius: 1vw;
+  background-color: rgb(181, 181, 181);
+  height: 100%;
+  margin-top: 1%;
+  width: 80%;
+}
+
+#campoMostrar{
+display: flex;
+flex-direction: row;
+height: 3vw;
+margin-bottom: 0.5%;
+}
+
+#selectCampoMostrar{
+height: 100%;
+background-color: rgb(196, 196, 196);
+border-radius: 1vw;
+border: black solid 1px;
+}
+
+
+#divParametrosBusca{
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction:row;
+  flex-wrap: wrap;
+  margin-bottom: 1%;
+}
+
+#btnAdicionarCampoBusca{
+width: 4%;
+height: 3vw;
+border-radius: 1vw;
+border: blue solid 2px;
+font-size: 2vw;
+background-color: transparent;
+color: blue;
+}
+
+#btnAdicionarCampoBusca:hover{
+  background-color: rgb(187, 187, 187);
+}
+
+#campoBusca{
+display: flex;
+flex-direction: column;
+height: 3vw;
+margin-right: 1%;
+margin-bottom: 0.4%;
+}
+
+#selectCampoBusca{
+height: 100%;
+background-color: rgb(196, 196, 196);
+border-radius: 1vw;
+border: black solid 1px;
+}
+
+#inputCampoBusca{
+
+}
+
+
+#divButtonPesquisar{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+#buttonPesquisar{
+  background-color: green;
+  color: white;
+  padding: 1%;
+  border-radius: 1vw;
+}
+
+#telaResultadoPesquisa{
+  width: 90%;
+  height: 40%;
+  background-color: white; 
+  display: flex;
+  flex-direction: column;
+  border-radius: 1vw;
+  margin-top: 2%;
+  padding: 2%;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 6px 12px;
+  text-align: center; 
+}
+
+
+th {
+  background-color: #f2f2f2;
+}
+
+#hrTipoProduto {
+  width: 8vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#hrFornecedor {
+  width: 7vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#hrVincular{
+  width: 11vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#hrProduto{
+  width: 5.5vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#hrRota{
+     width: 3vw;
+  background-color: black;
+  height: 0.1vw; 
+}
+
+#inputs {
+  width: auto;
+  height: 30%;
+  padding: 1%;
+  border-radius: 1vw;
+}
+
+#divInputEmailTelefoneWhatsapp {
+  margin-top: 1.7vw;
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 45%;
+  
+}
+
+#inputEmail {
+  width: 100%;
+  height: 20%;
+  border: solid black 1px;
+  border-radius: 0.5vw;
+  padding: 1vw;
+}
+
+#divInputEmail {
+  width: 33%;
+  margin-right: 5%;
+}
+
+#inputTelefone {
+  width: 100%;
+  height: 20%;
+  border: solid black 1px;
+  border-radius: 0.5vw;
+  padding: 1vw;
+}
+
+#divInputTelefone {
+  width: 33%;
+  margin-right: 5%;
+}
+
+#inputWhatsapp {
+  width: 100%;
+  height: 20%;
+  border: solid black 1px;
+  border-radius: 0.5vw;
+  padding: 1vw;
+}
+
+#divInputWhatsapp {
+  width: 33%;
+  margin-right: 5%;
+}
+
+#h4NomeFornecedor {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#inputNomeFornecedor {
+  width: 95%;
+  height: 90%;
+  border: solid black 1px;
+  border-radius: 0.5vw;
+  padding: 1vw;
+}
+
+#divButtonCadastroFornecedor{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 18%;
+
+    margin-right: 3%;
+}
+
+#ButtonCadastroFornecedor{
+background-color: green;
+color: white;
+border-radius: 0.6vw;
+padding: 0.6vw;
+}
+
+#divButtonCadastroProduto{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    height: 5%;
+    margin-right: 3%;
+    margin-top: 1%;
+}
+
+#ButtonCadastroProduto{
+background-color: green;
+color: white;
+border-radius: 0.6vw;
+padding: 0.6vw; 
+}
+
+
+#divDescricao{
+    height: 12%;
+    margin-top: 1%;
+}
+
+#h4Descricao{
+    margin-left: 1%;
+}
+
+#inputAreaDescricao{
+    width: 96.5%;
+    height:80%;
+    margin-left: 1%;
+    border-radius: 0.9vw;
+  border: solid black 1px;
+
+}
+
+#divPrecoVendaFornecedor{
+    display: flex;
+    margin-left: 1%;
+    margin-top: 1%;
+    width: 100%;
+    height: 10%;
+}
+
+#divInputCusto{
+margin-right: 5%;
+width: 10%;
+}
+
+#divInputVenda{
+margin-right: 5%;
+width: 10%;
+
+}
+
+#divInputFornecedor{
+margin-right: 4%;
+width: 30%;
+
+}
+
+#divInputTipoMaquina{
+margin-right: 4%;
+width: 19.9%;
+
+}
+
+#inputCusto{
+    padding: 1vw;
+    border-radius: 0.7vw;
+    border: solid black 1px;
+    width: 100%;
+}
+
+#inputVenda{
+    padding: 1vw;
+    border-radius: 0.7vw;
+    width: 100%;
+    border: solid black 1px;
+}
+
+#selectTipoMaquinaMaquina{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%; 
+height: 70%;
+}
+
+#selectFornecedor{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%; 
+height: 70%;
+}
+
+#h4Custo{
+}
+
+#h4TipoMaquina{
+  margin-left: 2%;
+}
+
+#h4Venda{
+}
+
+#h4Fornecedor{
+}
+
+#barra_esquerda {
+  display: flex;
+  position: sticky;
+  top: 0;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+#barra_esquerda_topo {
+  width: 90%;
+  height: 10%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+#btn_img_menu {
+  background-color: transparent;
+  min-width: 300px;
+  height: 100%;
+}
+
+#img_logo {
+  width: 90%;
+  height: 100%;
+}
+
+#btn_img_menu_seta {
+  background-color: transparent;
+
+  height: 100%;
+}
+
+.btn_img_menu_seta_fechar {
+  animation: botao 0.6s linear 0s 1;
+  rotate: 180deg;
+}
+
+.btn_img_menu_seta_abrir {
+  animation: botao_abrir 0.6s linear 0s 1;
+  rotate: 0deg;
+}
+
+#img_seta {
+  width: 90%;
+  height: 70%;
+}
+
+.divButtonMenu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 40%;
+  border-radius: 1vw;
+}
+
+#buttonMenu_produtos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#img_div_buttonProduto_menu {
+  position: fixed;
+  width: 6%;
+  height: 12%;
+  left: -1%;
+}
+
+#text_div_buttonProduto_menu {
+  position: fixed;
+  font-size: 150%;
+  margin-left: 4%;
+}
+
+#seta_div_buttonProduto_menu {
+  position: fixed;
+  font-size: 150%;
+  margin-left: 4%;
+  left: 10%;
+}
+
+.semTexto {
+  opacity: 0;
+}
+
+.texto_sumir {
+  animation: sumirTexto_direitaEsquerda 0.44s linear 0.2s 1 forwards;
+}
+.texto_voltar {
+  animation: voltarTexto_esquerdaDireita 0.3s linear 0s 1 forwards;
+}
+.menuFechado {
+  animation: menu_fechar 0.6s linear 0s 1 forwards;
+  /* width: 4%; */
+}
+
+button:hover {
+  cursor: pointer;
+}
+.menuAberto {
+  animation: menu_abrir 0.4s linear 0s 1 forwards;
+  /* width: 20%; */
+}
+
+#barra_esquerda_icones {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonMenu {
+  width: 90%;
+  height: 8%;
+  margin-bottom: 8%;
+  border-radius: 1vw;
+}
+
+.classProduto_fechado {
+  display: flex;
+  flex-direction: column;
+  height: 0%;
+  width: 100%;
+}
+
+.classProduto_aberto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  animation: cadastros_ver 0.1s linear 0s 1 forwards;
+}
+/* <button id="tipoProduto">Tipo produto</button>
+<button id="fornecedor">Fornecedor</button>
+<button id="rede">Rede</button>
+<button id="rota">Rota</button>
+<button id="produto">Produto</button>
+<button id="loja">Loja</button> */
+
+#tipoProduto {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+
+#tipoProduto:hover {
+  color: blue;
+}
+
+#fornecedor {
+  display: flex;
+  margin-left: 10%;
+  font-size: 100%;
+  background-color: transparent;
+}
+#fornecedor:hover {
+  color: blue;
+}
+
+#rede {
+  display: flex;
+  margin-left: 10%;
+  font-size: 100%;
+  background-color: transparent;
+}
+#rede:hover {
+  color: blue;
+}
+
+#rota {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+#rota:hover {
+  color: blue;
+}
+
+#produto {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+#produto:hover {
+  color: blue;
+}
+
+#loja {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+#loja:hover {
+  color: blue;
+}
+
+#maquina {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+
+#maquina:hover {
+  color: blue;
+}
+
+#tipoMaquina {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+#tipoMaquina:hover {
+  color: blue;
+}
+
+#atributo {
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+#atributo:hover {
+  color: blue;
+}
+
+#rack{
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+
+#rack:hover {
+  color: blue;
+}
+
+#vincular{
+  display: flex;
+  font-size: 100%;
+  margin-left: 10%;
+  background-color: transparent;
+}
+
+#vincular:hover {
+  color: blue;
+}
+
+#divInputRotaRedeLoja{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+#divInputRota{
+    width: 100%;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+}
+
+
+#h4Rota{
+margin-left: 2%;
+
+}
+
+#inputRota{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 93%;
+height: 100%;
+margin-left:2%;
+}
+
+#divInputRedeLoja{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    margin-left: 1.3%;
+}
+
+
+#divInputRede{
+width: 50%;
+}
+
+#h4Rede{
+margin-left: 2%;
+
+}
+
+#selectRedes{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 90%;
+height: 70%;
+margin-left:2%;
+}
+
+#selectLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 90%;
+height: 70%;
+margin-left:2%;
+}
+
+#h4Loja{
+margin-left: 2%;
+    
+}
+
+#divInputLoja{
+
+    width: 50%;
+}
+
+#divButtonCadastroRota{
+    margin-top: 1%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+#buttonCadastroRota{
+background-color: green;
+width: 10%;
+color: white;
+border-radius: 0.3vw;
+padding: 0.5vw;
+margin-right: 2.5%;
+font-size: 1vw;
+}
+
+#divNomeAbreviatura{
+    width: 100%;
+    height: 10%;
+    display: flex;
+}
+
+
+#h4Abreviacao{
+}
+
+#divInputAbreviatura{
+    width: 45%;
+}
+
+#inputNomeAbreviatura{
+padding: 1vw;
+border-radius:0.5vw;
+border: solid black 1px;
+width: 100%;
+}
+
+#inputNomeProduto{
+padding: 1vw;
+border-radius:0.5vw;
+border: solid black 1px;
+width: 100%;
+}
+
+#h4NomeProduto{
+}
+
+
+#divInputNome{
+    width: 45%;
+    margin-right: 4%;
+    margin-left: 1%;
+}
+
+#hrLoja{
+  width: 3vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#divInputRota{
+    width: 100%;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+}
+
+
+#h4Rota{
+margin-left: 2%;
+
+}
+
+#inputRota{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 93%;
+height: 100%;
+margin-left:2%;
+}
+
+#divInputRedeLoja{
+    display: flex;
+    width: 100%;
+    height: 40%;
+    margin-left: 1.3%;
+}
+
+
+#divInputRede{
+width: 50%;
+}
+
+#h4Rede{
+margin-left: 2%;
+
+}
+
+#selectRedes{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 90%;
+height: 70%;
+margin-left:2%;
+}
+
+#selectLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 90%;
+height: 70%;
+margin-left:2%;
+}
+
+#h4Loja{
+margin-left: 2%;
+    
+}
+
+#divInputLoja{
+
+    width: 50%;
+}
+
+#divButtonCadastroRota{
+    margin-top: 1%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+#buttonCadastroRota{
+background-color: green;
+width: 10%;
+color: white;
+border-radius: 0.3vw;
+padding: 0.5vw;
+margin-right: 2.5%;
+font-size: 1vw;
+}
+
+#divRedeLojaSequência{
+  width: 100%;
+  display: flex;
+  flex-direction:row;
+}
+
+#h4RedeLoja{
+  margin-left: 2.2%;
+}
+
+#selectRedeLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 94%;
+height: 70%;
+margin-left:2%;
+}
+
+#divInputNumeroLoja{
+  width: 50%;
+}
+
+#inputNumeroLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 90%;
+height: 20%;
+margin-left:2%;
+}
+
+#inputSequenciaLoja{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 93%;
+height: 20%;
+margin-left:2%;
+}
+
+#h4nRede{
+  margin-left: 2.3%;  
+}
+
+#h4nLoja{
+  margin-left: 2.3%;  
+}
+
+#h4Seq{
+  margin-left: 2.3%;  
+}
+
+#divSelectRede{
+width: 20%;
+margin-right: 2%;
+}
+
+#divSelectSeq{
+width: 20%;
+}
+
+
+#divLojaResp{  
+  width: 98%;
+  height: 10%;
+  padding: 1.3%;
+  display: flex;
+}
+
+#divInputNomeLoja{  
+width: 50%;
+height: 100%;
+} 
+
+#h4NomeLoja{
+
+}
+
+#inputNomeLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 90%;
+height: 20%; 
+}
+
+#divInputNomeResp{
+width: 50%;
+height: 100%;
+}
+
+#h4NomeResp{
+
+}
+
+#inputNomeResp{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 83%;
+height: 20%;
+}
+
+#locacaoValorFixo{
+  width: 100%;
+  height: 10%;
+  display: flex;
+}
+
+#divRadiosLoc{
+  width: 50%;
+}
+
+#h4Locacao{
+  margin-left: 3%;
+
+}
+
+#divInputRadiosLocCom{  
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  margin-left: 3%;
+  
+}
+
+#inputRadioFixo{
+  display: flex;  
+  width: 15%;
+  align-items: center;
+}
+
+ #radioFixo{
+  margin-right: 5%;
+}
+
+#h4Fixo{
+} 
+
+#inputRaidoComissao{
+  display: flex; 
+  width: 15%;
+  align-items: center;
+
+}
+
+ #radioComissao{
+  margin-right: 5%;
+}
+
+#h4Comissao{
+
+}
+
+#divInputValor{
+  width: 50%;
+}
+
+#inputValor{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 82%;
+height: 20%;
+}
+
+#emailTelWhat{
+  width: 100%;
+  height: 10%;
+}
+
+#emailTelWhat{
+  display: flex;
+  padding: 1%;
+}
+
+#divInputEmailLoja{
+width: 32%;
+}
+
+#inputEmailLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 82%;
+height: 20%;
+}
+
+#divInputTel{
+  width: 32%;
+}
+
+#inputTel{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 82%;
+height: 20%;
+}
+
+#divInputWhat{
+  width: 32%;
+}
+
+#inputWhat{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 82%;
+height: 20%;
+}
+
+#divRotaCep{
+  width: 94.1%;
+  height: 10%;
+  display: flex;
+  padding: 1%;
+}
+
+#divInputRotaLoja{  
+  width: 50%;
+}
+
+#h4RotaLoja{
+
+}
+
+#inputRotaLoja{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 95%;
+height: 65%;
+}
+
+#divInputCepLoja {
+  width: 50%;
+}
+
+#h4CEPLoja{
+margin-left: 4%;
+
+}
+
+#inputCEPLoja{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#enderecoNumeroComp{
+  width: 100%;
+  height: 10%; 
+  display: flex;
+}
+
+#divEndereco{
+  width: 30%;
+  margin-right:1% ;
+}
+
+#inputEnderecoLoja{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#h4DivEndereco{
+margin-left: 4%;
+}
+
+#divComplemento{
+  width: 50%;
+  margin-right: 1%;
+}
+
+#inputComplemento{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#h4Complemento{
+margin-left: 4%;
+}
+
+
+#divNumero{
+  width: 10%;
+}
+
+#inputNumero{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#h4Numero{
+margin-left: 4%;
+}
+
+#bairroCidadeEstado{
+  width: 100%;
+  height: 10%; 
+  display: flex;
+}
+
+#divBairro{
+  width: 30%;
+  margin-right: 1.7%;
+}
+
+#inputBairro{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#h4DivBairro{
+margin-left: 4%;
+}
+
+
+#divCidade{
+  width: 35%;
+  margin-right: 2%;
+}
+
+#inputCidade{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#h4Cidade{
+margin-left: 4%;
+}
+
+
+#divEstado{
+  width: 24.5%;
+}
+
+#inputEstado{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 88.1%;
+height: 20%;
+margin-left: 4%;
+}
+
+#h4Estado{
+margin-left: 4%;
+}
+
+#divButtonCadastroLoja{
+  height: 5%;
+  display: flex;
+  justify-content: right;
+}
+#ButtonCadastroLoja{
+  background-color: green;
+  color: white;
+  border-radius: 0.4vw;
+  margin-right: 6.1%;
+  padding: 1.5%;
+  display: flex;
+  align-items: center;
+}
+
+#hrMaquina{
+  width: 5.5vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#divNomeMaquinaDescricao{
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+}
+
+#divInputNomeMaquina{
+  width: 50%;
+  height: 10%;
+  padding: 1vw;
+}
+
+#h4NomeMaquina{
+
+}
+
+#inputNomeMaquina{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 95%;
+height: 100%;
+}
+
+#divInputDescricao{
+  width: 50%;
+  height: 10%;
+  padding: 1vw;
+}
+
+#h4DescricaoMaquina{
+
+}
+
+#inputDescricao{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 89.1%;
+height: 100%;
+}
+
+#DivInputTamanhoFormatoCorQuantidade{
+  width: auto;
+  height: 10%;
+  padding: 1vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#divInputTamanho{
+  width: 22.5%;
+}
+
+#selectTamanhoMaquina{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 100%;
+height: 70%;
+}
+
+#divInputFormato{
+width: 22.5%;
+}
+
+#selectFormato{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 100%;
+height: 70%;
+}
+
+#divInputCor{
+width: 21%;
+margin-right: 2%;
+}
+
+#h4Cor{
+
+}
+#selectCor{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 100%;
+height: 70%;
+}
+
+#divInputQuantidade{
+width: 23%;
+}
+
+#h4Quantidade{
+/* margin-left: -26%; */
+
+}
+
+#inputQuantidade{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;  
+width: 77.4%;
+height: 25%;
+}
+
+#atributosMaquina{
+  display: flex;
+}
+
+#DivInputChaveCofreMaquinaFabricanteTipo {
+  width: auto;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#divInputChaveCofre {
+  width: 20%;
+  margin-left: 1%;
+}
+
+#inputChaveCofre {
+  border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 100%;
+  height: 27%;
+}
+
+#divInputChaveMaquina {
+  width: 20%;
+}
+
+#inputChaveMaquina {
+  border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 100%;
+  height: 27%;
+
+}
+
+#divInputFabricante {
+  width: 20%;
+}
+
+#inputFabricante {
+  border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 94%;
+  height: 27%;
+}
+
+#divInputTipoMaquinaMaquina{
+  width: 32.6%;
+
+}
+
+#selectTipoMaquina {
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%;
+height: 70%; 
+
+}
+
+#divButtonCadastroMaquina{
+  width: 96.5%;
+  height: 5%;
+  display: flex;
+  justify-content: right;
+}
+
+#buttonCadastroMaquina{
+background-color: green;
+color: white;
+border-radius: 0.6vw;
+padding: 0.6vw;
+}
+
+#hrAtributo{
+  width: 5.8vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#divAtributos{
+  width: auto;
+  padding: 1vw;
+}
+
+#divCadastroTamanhoFormato{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#divCadastroTamanho{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 40%;
+}
+
+#inputCadastroTamanho{
+    border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 90%;
+  height: 27%;
+}
+
+#divInputCadastroTamanho{
+  width: 80%;
+}
+
+#btnCadastroTamanho{
+  color: white;
+  background-color: green;
+  border-radius: 1vw;
+  padding: 0.8vw;
+}
+
+#divCadastroFormato{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 40%;
+}
+
+#inputCadastroFormato{
+    border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 90%;
+  height: 27%;
+}
+
+#divInputCadastroFormato{
+  width: 80%;
+}
+
+#btnCadastroFormato{
+  color: white;
+  background-color: green;
+  border-radius: 1vw;
+  padding: 0.8vw;
+}
+
+#divCadastroFormato{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 40%;
+}
+
+#divCadastroCorTipoMaquina{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#divCadastroCor{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 40%;
+}
+
+#inputCadastroCor{
+    border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 90%;
+  height: 27%;
+}
+
+#divInputCadastroCor{
+  width: 80%;
+}
+
+#btnCadastroCor{
+  color: white;
+  background-color: green;
+  border-radius: 1vw;
+  padding: 0.8vw;
+}
+
+#divCadastroTipoMaquina{
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 40%;
+  margin-top: 2%;
+}
+
+#inputCadastroTipoMaquina{
+    border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 90%;
+  height: 27%;
+}
+
+#divInputCadastroTipoMaquina{
+  width: 80%;
+}
+
+#btnCadastroTipoMaquina{
+  color: white;
+  background-color: green;
+  border-radius: 1vw;
+  padding: 0.8vw;
+}
+
+#divCadastroRedeAtributo{
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  
+}
+
+#divCadastroRede{
+  display: flex;
+  align-items: end;
+  width: 41.5%;
+  margin-top: 2%;
+  margin-left: 5%;
+}
+
+#inputCadastroRede{
+    border-radius: 0.5vw;
+  padding: 1vw;
+  border: solid black 1px;  
+  width: 87%;
+  height: 27%;
+}
+
+#divInputCadastroRede{
+  width: 80%;
+}
+
+#btnCadastroRede{
+  color: white;
+  background-color: green;
+  border-radius: 1vw;
+  padding: 0.8vw;
+}
+
+#hrRack{
+  width: 3.3vw;
+  background-color: black;
+  height: 0.1vw;
+}
+
+#divCadastroRack{
+  width: auto;
+  padding: 1vw;
+  
+}
+
+#divInputNomeMedidasCor{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#divInputRackNome{
+  width: 30%;
+}
+
+#inputRackNome{
+    width: 100%;
+  height: 20%;
+  border: solid black 1px;
+  border-radius: 0.5vw;
+  padding: 1vw;
+}
+
+#divInputRackMedidas{
+  width: 30%;
+}
+
+#inputRackMedidas{
+    width: 100%;
+  height: 20%;
+  border: solid black 1px;
+  border-radius: 0.5vw;
+  padding: 1vw;
+}
+
+#divSelectRackCor{
+  width: 30%;
+}
+
+#selectRackCor{
+border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 90%;
+height: 70%;
+}
+
+#divBtnCadastroRack{
+  width: 97.5%;
+  height: 50% ;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+#btnCadastroRack{
+background-color: green;
+color: white;
+border-radius: 0.6vw;
+padding: 0.6vw;
+}
+
+#divCadastroVincularRedeLoja{
+  width: auto ;
+  display: flex;
+  padding: 1vw;
+  justify-content: space-between;
+}
+
+#divSelectVincularRede{
+  width: 50%;
+}
+
+#selectVincularRedes{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%; 
+height: 70%;
+}
+
+#divSelectVincularLoja{
+  width: 45%;
+}
+
+#selectVincularLojas{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%; 
+height: 70%;
+}
+
+#divSelectVincularTipoMaquinaMaquina{
+  width: auto ;
+  display: flex;
+  padding: 1vw;
+  justify-content: space-between;
+}
+
+#divSelectVincularTipoMaquina{
+  width: 50%;
+}
+
+#selectVincularTipoMaquina{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%; 
+height: 70%;
+}
+
+#divSelectVincularMaquina{
+  width: 45%;
+}
+
+#selectVincularMaquina{
+  border-radius:0.5vw;
+padding: 1vw;
+border: solid black 1px;
+width: 100%; 
+height: 70%;
+}
+
+#divButtonVincularMaquina{
+  width: 98.9%;
+  display: flex;
+  justify-content: end;
+}
+
+#btnVincularMaquina{
+background-color: green;
+color: white;
+border-radius: 0.6vw;
+padding: 0.6vw;
+}
+
+@keyframes cadastros_ver {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 25%;
+  }
+}
+
+@keyframes cadastros_ver {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 25%;
+  }
+}
+
+@keyframes botao {
+  from {
+    transform: rotate(-180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes botao_abrir {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes menu_fechar {
+  from {
+    width: 17%;
+  }
+  to {
+    width: 4%;
+  }
+}
+@keyframes menu_abrir {
+  from {
+    width: 4%;
+  }
+  to {
+    width: 17%;
+  }
+}
+
+@keyframes sumirTexto_direitaEsquerda {
+  from {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(0% 100% 0% 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes voltarTexto_esquerdaDireita {
+  from {
+    clip-path: inset(0% 100% 0% 0%);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+}
+
+@keyframes seta_sumir {
+  from {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(0% 100% 0% 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes seta_voltar {
+  from {
+    clip-path: inset(0% 100% 0% 0%);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+}
