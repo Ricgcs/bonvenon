@@ -13,6 +13,8 @@ export const validarProduto = async (valor) => {
   }
 }
 
+
+
 export const cadastroProduto = async(produto)=>{
     const sql = "insert into produto(nome,abreviatura,descricao,custo,venda,fornecedor_id,tipo_maquina_id) values (?,?,?,?,?,?,?)";
     try{

@@ -4,7 +4,7 @@ import cors from "cors";
 import { cadastro, validar } from "./produto.js";
 import { cadastroLoja, validarLoja } from "./loja.js";
 import { cadastroFornecedor, validarFornecedor } from "./fornecedor.js";
-import { pesquisa, pesquisa_inputs, ver } from "./cods.js";
+import { pesquisa, pesquisa_inputs, ver, deletar } from "./cods.js";
 import { cadastroRota, validarRota } from "./rota.js";
 import { cadastroProduto, validarProduto } from "./atributo.js";
 import { cadastroMaquina, validarMaquina } from "./maquina.js";
@@ -17,6 +17,17 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+app.post("/deletar",async(req,res)=>{
+const valor = req.body.valor;
+  try {
+    const valido = await deletar(valor.onde, valor.valor);
+
+  }
+catch(error){
+  console.log(error);
+}
+});
 
 app.post("/cadastro/atributo", async (req, res) => {
   const valor = req.body.valor;

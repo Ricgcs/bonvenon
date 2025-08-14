@@ -15,7 +15,7 @@ console.log(error);
 
 export const cadastroLoja = async (valor) => {
     console.log(valor);
-  let sql = `INSERT INTO loja(rede, numero_loja, sequencia, nome, nome_responsavel, locacao_fixo, locacao_comissao, valor, email, telefone, whatsapp, rota, cep, endereco, complemento, numero, bairro, cidade, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+  let sql = `INSERT INTO loja(rede, numero_loja, sequencia, nome, nome_responsavel, locacao_fixo, locacao_comissao, valor, email, telefone, whatsapp, cep, endereco, complemento, numero, bairro, cidade, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
   try {
     const result = await con.query(sql, [
       valor.rede,
@@ -29,7 +29,6 @@ export const cadastroLoja = async (valor) => {
       valor.email,
       valor.telefone,
       valor.whatsapp,
-      valor.rota,
       valor.cep,
       valor.endereco,
       valor.complemento,

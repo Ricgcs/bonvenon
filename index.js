@@ -14,6 +14,22 @@ async function envio(url, valor) {
   }
 }
 
+async function deletar(url, valor){
+  try {
+    const envio = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ valor: valor }),
+    });
+    const envio_2 = await envio.json();
+    const envio_3 = envio_2.res;
+    return envio_3;
+  } catch (error) {
+    console.log("Erro post:", error);
+    return 3;
+  }  
+}
+
 async function receber(valor, onde) {
   try {
     const dados = await fetch(`http://localhost:3000/ver/${valor}/${onde}`, {
@@ -268,7 +284,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -365,12 +381,85 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"vinculo_maquina",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "vinculo_maquina",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
           });
-
-
 
         const inputRede = document.getElementById("selectVincularRedes");
         const inputLoja = document.getElementById("selectVincularLojas");
@@ -402,12 +491,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             "selectVincularTipoMaquina"
           ).value;
           const tipo_maquina_envio = await pesquisaInput(
-            "id",
+            "nome",
             "tipo_maquina",
             "nome",
             tipo_maquina
           );
-          const tipo_maquina_id = tipo_maquina_envio[0].id;
+
+          const tipo_maquina_id = tipo_maquina_envio[0].nome;
+
           const dadosMaquina = await pesquisaInput(
             "nome",
             "maquina",
@@ -598,7 +689,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -676,6 +767,12 @@ document.addEventListener("DOMContentLoaded", async () => {
               let contador = 0;
               let trAtual = document.createElement("tr");
 
+              // trAtual.addEventListener("click", () => {
+              // alert("capa");
+              // const teste = document.querySelector("td").textContent;
+              // console.log(teste);
+              // });
+
               camposBody.forEach((dadosBody) => {
                 const novaTd = document.createElement("td");
                 novaTd.textContent = dadosBody;
@@ -685,6 +782,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (contador % tamanhoHead === 0) {
                   tabela_res.appendChild(trAtual);
                   trAtual = document.createElement("tr");
+                  //   trAtual.addEventListener("click", () => {
+                  //   alert("capa");
+                  //   const teste = document.querySelector("td").textContent;
+                  //   alert(teste);
+
+                  // });
                 }
               });
 
@@ -695,12 +798,87 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              //função controle
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"fornecedor",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "fornecedor",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
           });
 
-        
         document
           .getElementById("ButtonCadastroFornecedor")
           .addEventListener("click", async () => {
@@ -914,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -1011,12 +1189,84 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"rota",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "rota",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
           });
-
-        
 
         const selectLoja = document.getElementById("selectLoja");
         const selectRede = document.getElementById("selectRedes");
@@ -1094,6 +1344,7 @@ document.addEventListener("DOMContentLoaded", async () => {
          Produtos
          <hr id="hrProduto">
          </div>        
+         <div id="divCadastroProduto">
          <div id="divNomeAbreviatura">
 
          <div id="divInputNome">
@@ -1116,12 +1367,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
          <div id="divInputCusto">
         <h4 id="h4Custo" data-value="custo">Custo</h4>
-        <input id="inputCusto" placeholder="Custo">
+        <input id="inputCusto" placeholder="Custo" type="number">
          </div>
 
          <div id="divInputVenda">
         <h4 id="h4Venda" data-value="venda">Venda</h4>
-        <input id="inputVenda" placeholder="Venda">         
+        <input id="inputVenda" placeholder="Venda" type="number">         
          </div>
 
          <div id="divInputFornecedor">
@@ -1142,6 +1393,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <button id="ButtonCadastroProduto">+ Cadastro</button>
           </div>
 
+        </div>
         </div>
         </div>
         <div id="tela_branca_pesquisa">
@@ -1264,7 +1516,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -1361,6 +1613,81 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"produto",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "produto",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
@@ -1461,6 +1788,7 @@ document.addEventListener("DOMContentLoaded", async () => {
          Loja
          <hr id="hrLoja">
          </div>  
+         <div id="divCadastroLoja">
         <div id="divLojaResp">        
 
         <div id="divInputNomeLoja">
@@ -1486,7 +1814,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             <div id="divSelectRede">
             <h4 id="h4nLoja" data-value = "numero_loja">Número da loja</h4>
-            <input id="inputNumeroLoja" placeholder="numeroLoja">
+            <input id="inputNumeroLoja" placeholder="numeroLoja" type="number">
             </div>
 
             <div id="divSelectSeq">
@@ -1508,7 +1836,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               </div>
               
               <div id="inputRaidoComissao">
-              <input id="radioComissao" type="radio" name="comissao">
+              <input id="radioComissao" type="radio" name="fixo">
               <h4 id="h4Comissao" data-value="locacao_comissao">Comissão</h4>              
               </div>
 
@@ -1517,7 +1845,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         <div id="divInputValor">
         <h4 id="h4valor" data-value="valor">Valor</h4>
-        <input id="inputValor" placeholder="Valor">
+        <input id="inputValor" placeholder="Valor" type="number">
         </div>
 
         </div>
@@ -1531,33 +1859,47 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         <div id="divInputTel">
         <h4 id="h4Tel" data-value="telefone">Telefone</h4>
-        <input id="inputTel" placeholder="Telefone">
+        <input id="inputTel" placeholder="Telefone" type="number">
         </div>
 
         <div id="divInputWhat">
         <h4 id="h4What" data-value="whatsapp">Whatsapp</h4>
-        <input id="inputWhat" placeholder="Whatsapp">
+        <input id="inputWhat" placeholder="Whatsapp" type="number">
         </div>
 
         </div>
 
         <div id="divRotaCep">
 
-        <div id="divInputRotaLoja">
-        <h4 id="h4RotaLoja" data-value="rota">Rota</h4>
+        <div id="divCidade">
+        <h4 id="h4Cidade" data-value="cidade">Cidade</h4>
+        <div>
+        <input id="inputCidade" placeholder="Cidade">
+        </div>
+        </div>
 
-        <select id="inputRotaLoja">
-        <option  disabled selected>--Selecione a rede--</option>
-        </select>
+        <div id="divEstado">
+        <h4 id="h4Estado" data-value="estado">Estado</h4>
+        <div>
+        <input id="inputEstado" placeholder="Estado">
+        </div>
         </div>
 
         <div id="divInputCepLoja">
         <h4 id="h4CEPLoja" data-value="cep">CEP</h4> 
-        <input id="inputCEPLoja" placeholder="Rota">
+        <input id="inputCEPLoja" placeholder="CEP" type="number">
+        </div>
 
+
+        <div id="divBairro">
+        <h4 id="h4DivBairro" data-value="bairro">Bairro</h4>
+        <div>
+        <input id="inputBairro" placeholder="Bairro">
+        </div>
         </div>
 
         </div>
+
 
         <div id="enderecoNumeroComp">
 
@@ -1578,7 +1920,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div id="divNumero">
         <h4 id="h4Numero" data-value="numero">Número</h4>
         <div>
-        <input id="inputNumero" placeholder="Número">
+        <input id="inputNumero" placeholder="Número" type="number">
         </div>
         </div>
 
@@ -1586,32 +1928,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         <div id="bairroCidadeEstado">
 
-        <div id="divBairro">
-        <h4 id="h4DivBairro" data-value="bairro">Bairro</h4>
-        <div>
-        <input id="inputBairro" placeholder="Bairro">
-        </div>
-        </div>
 
-        <div id="divCidade">
-        <h4 id="h4Cidade" data-value="cidade">Cidade</h4>
-        <div>
-        <input id="inputCidade" placeholder="Cidade">
-        </div>
-        </div>
-
-        <div id="divEstado">
-        <h4 id="h4Estado" data-value="estado">Estado</h4>
-        <div>
-        <input id="inputEstado" placeholder="Estado">
-        </div>
-        </div>
 
         </div>
         <div id="divButtonCadastroLoja">
         <button id="ButtonCadastroLoja">+Cadastro</button>
         </div>
-
+        </div>
         </div>
 
 
@@ -1737,7 +2060,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -1834,6 +2157,81 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"loja",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "loja",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
@@ -1853,7 +2251,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           const rede = document.getElementById("selectRedeLoja").value;
           const dadosRotaLoja = await pesquisaInput(
             "nome",
-            "rota",
             "rede",
             rede
           );
@@ -1880,7 +2277,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             const email = document.getElementById("inputEmailLoja").value;
             const telefone = document.getElementById("inputTel").value;
             const whatsapp = document.getElementById("inputWhat").value;
-            const rota = document.getElementById("inputRotaLoja").value;
             const cep = document.getElementById("inputCEPLoja").value;
             const endereco = document.getElementById("inputEnderecoLoja").value;
             const complemento =
@@ -1901,7 +2297,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               !email ||
               !telefone ||
               !whatsapp ||
-              rota =="--Selecione a rede--" ||
               !cep ||
               !endereco ||
               !numero ||
@@ -1923,7 +2318,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 email,
                 telefone,
                 whatsapp,
-                rota,
                 cep,
                 endereco,
                 complemento,
@@ -1966,13 +2360,14 @@ document.addEventListener("DOMContentLoaded", async () => {
          Máquina
          <hr id="hrMaquina">
          </div>
+         <div id="divCadastroMaquina">
          <div id="divNomeMaquinaDescricao">
 
-        <div id="divInputNomeMaquina">
+        <div id="divInputNomeMaquina">  
           <h4 id="h4NomeMaquina" data-value="nome">Nome máquina</h4>
           <input id="inputNomeMaquina" placeholder="Nome máquina">
         </div>
-
+        
         <div id="divInputDescricao">
           <h4 id="h4DescricaoMaquina" data-value="descricao">Descrição</h4>
           <input id="inputDescricao" placeholder="Descrição">
@@ -2003,7 +2398,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           <div id="divInputQuantidade">
           <h4 id="h4Quantidade" data-value="quantidade">Quantidade</h4>
-          <input id="inputQuantidade" placeholder="Quantidade">  
+          <input id="inputQuantidade" placeholder="Quantidade" type="number">  
           </div>
         </div>      
 
@@ -2159,7 +2554,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -2200,7 +2595,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               valor2: nomeCampoSelect,
               valor3: valorCampoSelect,
             };
-
 
             try {
               const pesq = await envio(
@@ -2255,12 +2649,85 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"maquina",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "maquina",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
           });
-
-        
 
         const inputFormato = document.getElementById("selectFormato");
         const inputCor = document.getElementById("selectCor");
@@ -2394,7 +2861,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <div id="divCadastroTamanho">
               <div id="divInputCadastroTamanho">
               <h4>Tamanho</h4>
-              <input id="inputCadastroTamanho" placeholder="Tamanho">
+              <input id="inputCadastroTamanho" placeholder="Tamanho" type="text">
               </div>
               <button id="btnCadastroTamanho">Cadastro+</button>
             </div>
@@ -2738,7 +3205,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           campoBusca.appendChild(divControle);
           campoBusca.appendChild(inputCampoBusca);
 
-            btnRemoverBuscar.addEventListener("click", () => {
+          btnRemoverBuscar.addEventListener("click", () => {
             campoBusca.remove();
             qtd2--;
           });
@@ -2779,7 +3246,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               valor2: nomeCampoSelect,
               valor3: valorCampoSelect,
             };
-
 
             try {
               const pesq = await envio(
@@ -2834,12 +3300,85 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Adiciona a tabela pronta ao div de resultados
               divTelaResultado.appendChild(tabela_res);
+              document.querySelectorAll("tr").forEach((tr) => {
+                tr.addEventListener("click", async () => {
+                  const telaExibicao = document.createElement("div");
+                  telaExibicao.id = "telaExibicao";
+
+                  const telaExibicao_topo = document.createElement("div");
+                  telaExibicao_topo.id = "telaExibicao_topo";
+
+                  const btnFecharDiv = document.createElement("button");
+                  btnFecharDiv.textContent = "x";
+                  btnFecharDiv.id = "btnFecharDiv";
+                  const parametros = document.createElement("div");
+                  parametros.id = "parametros";
+
+                  const fimDiv = document.createElement("div");
+                  fimDiv.id="fimDiv";
+
+                  const delBtn = document.createElement("button");
+                  delBtn.id = "delBtn";
+                  delBtn.textContent = "Deletar";
+
+                  tela_cadastro.appendChild(telaExibicao);
+                  telaExibicao.appendChild(telaExibicao_topo);
+                  telaExibicao.appendChild(parametros);
+                  telaExibicao.appendChild(fimDiv);
+                  fimDiv.appendChild(delBtn);
+                  telaExibicao_topo.appendChild(btnFecharDiv);
+
+                  btnFecharDiv.addEventListener("click", () => {
+                    telaExibicao.remove();
+                  });
+
+
+                  //tre
+                  const primeiroCampo = tr.querySelector("td").textContent;
+                      delBtn.addEventListener("click",()=>{
+                    
+                    deletar("http://localhost:3000/deletar",{onde:"rack",valor:primeiroCampo})
+                    alert("Deletado com sucesso");
+                    telaExibicao.remove();
+                    tabela_res.remove();
+                  });
+                  try {
+                    let dadosPesqusa = await pesquisaInput(
+                      "*",
+                      "rack",
+                      "id",
+                      primeiroCampo
+                    );
+                    dadosPesqusa.forEach((linha) => {
+                      Object.entries(linha).forEach(([campo, valor]) => {
+                        const divParametro = document.createElement("div");
+                        divParametro.id = "divParametro";
+                        divParametro.innerHTML = `
+                  <h3>${campo}</h3>
+                  
+                  <h3 id = "exibicaoInput">${valor}</h3>
+                  `;
+                        parametros.appendChild(divParametro);
+
+                      });
+                    });
+                    //inputmudanca
+                    document.querySelectorAll("#exibicaoInput").forEach((el) => {
+                    el.addEventListener("click", () => {
+                      
+                    });
+                  });
+                    
+                  } catch (error) {
+                    console.log(error);
+                  }
+                });
+              });
             } catch (error) {
               console.log(error);
             }
           });
 
-        
         const inputCorRack = document.getElementById("selectRackCor");
         const dadosCor = await receber("nome", "cor");
         dadosCor.forEach((dados) => {

@@ -61,3 +61,14 @@ export const pesquisa = async (oque, onde, antes, depois) => {
     console.log(error);
   }
 };
+
+export const deletar = async(onde, valor) =>{
+const sql = `delete from ${onde} where id = ${valor}`;
+try{
+const result = con.query(sql);
+return result;
+}
+catch(error){
+  console.log(error);
+}
+}

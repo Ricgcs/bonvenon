@@ -8,7 +8,8 @@ export const conectar = async()=>{
         host: 'localhost',
         user: 'root',
         password: 'ricardo',
-        database: 'projetonegosimples'  
+        database: 'projetonegosimples',  
+        
 })
 global.conectar = conexao;
 return conexao; 
