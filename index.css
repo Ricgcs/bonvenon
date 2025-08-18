@@ -278,13 +278,73 @@ th {
   margin-right: 5%;
 }
 
+#inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+/* Cada campo */
+#inputs div {
+  display: flex;
+  flex-direction: column;
+}
+
+#inputs h4 {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+#inputs input {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+#inputs input:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 4px rgba(0,119,255,0.3);
+}
+
+/* Botão de cadastro */
+#divButtonCadastroFornecedor {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#ButtonCadastroFornecedor {
+  padding: 10px 20px;
+  background: #0077ff;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#ButtonCadastroFornecedor:hover {
+  background: #005fcc;
+}
+
+#ButtonCadastroFornecedor:active {
+  transform: scale(0.97);
+}
+
+/* 
 #inputTelefone {
   width: 100%;
   height: 20%;
   border: solid black 1px;
   border-radius: 0.5vw;
   padding: 1vw;
-}
+} */
 
 #divInputTelefone {
   width: 33%;
@@ -1295,14 +1355,14 @@ height: 20%;
   margin-right: 3%;
 }
 
-#inputEstado{
+/* #inputEstado{
 border-radius:0.5vw;
 padding: 1vw;
 border: solid black 1px;  
 width: 88.1%;
 height: 20%;
 margin-left: 9%;
-}
+} */
 
 #h4Estado{
 margin-left: 9%;

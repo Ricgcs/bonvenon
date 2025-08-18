@@ -62,7 +62,7 @@ app.post("/cadasto/fornecedor", async (req, res) => {
   const valor = req.body.valor;
 
   try {
-    const valida = await validarFornecedor(valor.nomeFornecedor);
+    const valida = await validarFornecedor(valor.nome);
     let validacao = valida[0][0].valida;
 
     if (validacao > 0) {

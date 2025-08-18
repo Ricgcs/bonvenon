@@ -540,32 +540,86 @@ document.addEventListener("DOMContentLoaded", async () => {
         Fornecedor<hr id="hrFornecedor">
         </div>
         <div id="inputs">
-          <div id = "divInputNomeFornecedor">
-        <h4 id="h4NomeFornecedor" data-value="nome">Nome do fornecedor</h4>
-        <input id="inputNomeFornecedor" placeholder="Nome fornecedor" type="text">
-          </div>
-          <div id="divInputEmailTelefoneWhatsapp">
-          
-          <div id="divInputEmail">
-          <h4 data-value="email">Email</h1>
-          <input id = "inputEmail" placeholder="Email fornecedor" type="email">
-          </div>
-          
-          <div id="divInputTelefone">
-          <h4 data-value="telefone">Telefone</h1>
-          <input id = "inputTelefone" placeholder="Telefone fornecedor" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" type="tel">
-          </div>
-          
-          <div id="divInputWhatsapp">
-          <h4 data-value="whatsapp">Whatsapp</h1>
-          <input id = "inputWhatsapp" placeholder="Whatsapp fornecedor" type="tel">
-          </div>
-          
-          </div>
-          <div id="divButtonCadastroFornecedor">
-          <button id="ButtonCadastroFornecedor">+ Cadastro</button>
-          </div>
+
+        <div>
+          <h4 data-value="nome">Nome do fornecedor</h4>
+          <input id="inputNomeFornecedor" placeholder="Nome fornecedor" type="text">
         </div>
+
+        <div>
+          <h4 data-value="CNPJ">CNPJ</h4>
+          <input id="inputCNPJ" placeholder="00.000.000/0000-00" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Inscricao">Inscrição</h4>
+          <input id="inputInscricao" placeholder="Inscrição estadual" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Endereco">Endereço</h4>
+          <input id="inputEndereco" placeholder="Rua, número" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Municipio">Município</h4>
+          <input id="inputMunicipio" placeholder="Cidade" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Estado">Estado</h4>
+          <input id="inputEstado" placeholder="UF" maxlength="2" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="CEP">CEP</h4>
+          <input id="inputCEP" placeholder="00000-000" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Contato">Contato</h4>
+          <input id="inputContato" placeholder="Nome do contato" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Telefone">Telefone</h4>
+          <input id="inputTelefone" placeholder="Telefone" type="tel">
+        </div>
+
+        <div>
+          <h4 data-value="Fax">Fax</h4>
+          <input id="inputFax" placeholder="Fax" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Ult_Custo">Último Custo</h4>
+          <input id="inputUltCusto" placeholder="0.00" type="number" step="0.01">
+        </div>
+
+        <div>
+          <h4 data-value="Bairro">Bairro</h4>
+          <input id="inputBairro" placeholder="Bairro" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Data_Ult_Mov">Data Última Movimentação</h4>
+          <input id="inputDataUltMov" type="date">
+        </div>
+
+        <div>
+          <h4 data-value="Observacao">Observação</h4>
+          <input id="inputObservacao" placeholder="Observação" type="text">
+        </div>
+
+        <div>
+          <h4 data-value="Tipo_Fornecedor">Tipo Fornecedor</h4>
+          <input id="inputTipoFornecedor" placeholder="Ex: Atacado, Varejo" type="text">
+        </div>
+
+        <div id="divButtonCadastroFornecedor">
+          <button id="ButtonCadastroFornecedor">+ Cadastro</button>
+        </div>
+      </div>
         </div>
           </div>
         </div>
@@ -725,7 +779,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // Monta objeto para envio
             const objPesquisa = {
-              onde: "fornecedor",
+              onde: "fornecedores",
               valor1: parametrosSelect,
               valor2: nomeCampoSelect,
               valor3: valorCampoSelect,
@@ -837,7 +891,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const primeiroCampo = tr.querySelector("td").textContent;
                       delBtn.addEventListener("click",()=>{
                     
-                    deletar("http://localhost:3000/deletar",{onde:"fornecedor",valor:primeiroCampo})
+                    deletar("http://localhost:3000/deletar",{onde:"fornecedores",valor:primeiroCampo})
                     alert("Deletado com sucesso");
                     telaExibicao.remove();
                     tabela_res.remove();
@@ -845,7 +899,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   try {
                     let dadosPesqusa = await pesquisaInput(
                       "*",
-                      "fornecedor",
+                      "fornecedores",
                       "id",
                       primeiroCampo
                     );
@@ -878,52 +932,55 @@ document.addEventListener("DOMContentLoaded", async () => {
               console.log(error);
             }
           });
+document.getElementById("ButtonCadastroFornecedor")
+    .addEventListener("click", async () => {
+      const fornecedorobj = {
+        nome: document.getElementById("inputNomeFornecedor").value,
+        CNPJ: document.getElementById("inputCNPJ").value,
+        Inscricao: document.getElementById("inputInscricao").value,
+        Endereco: document.getElementById("inputEndereco").value,
+        Municipio: document.getElementById("inputMunicipio").value,
+        Estado: document.getElementById("inputEstado").value,
+        CEP: document.getElementById("inputCEP").value,
+        Contato: document.getElementById("inputContato").value,
+        Telefone: document.getElementById("inputTelefone").value,
+        Fax: document.getElementById("inputFax").value,
+        Ult_Custo: document.getElementById("inputUltCusto").value,
+        Bairro: document.getElementById("inputBairro").value,
+        Data_Ult_Mov: document.getElementById("inputDataUltMov").value,
+        Observacao: document.getElementById("inputObservacao").value,
+        Tipo_Fornecedor: document.getElementById("inputTipoFornecedor").value
+      };
 
-        document
-          .getElementById("ButtonCadastroFornecedor")
-          .addEventListener("click", async () => {
-            const nomeFornecedor = document.getElementById(
-              "inputNomeFornecedor"
-            ).value;
-            const email = document.getElementById("inputEmail").value;
-            const telefone = document.getElementById("inputTelefone").value;
-            const whatsapp = document.getElementById("inputWhatsapp").value;
+      // Validação simples
+      let confirma = 0;
+for (let [campo, valor] of Object.entries(fornecedorobj)) {
+if(!valor){
+  confirma = 1;
+}
+}
+  if (confirma == 1) {
+    alert(`Preencha todos os campos`);
+    return;
+  }
 
-            const fornecedorobj = {
-              nomeFornecedor: nomeFornecedor,
-              email: email,
-              telefone: telefone,
-              whatsapp: whatsapp,
-            };
-            try {
-              //7
+      try {
+        let resultado = await envio(
+          "http://localhost:3000/cadasto/fornecedor",
+          fornecedorobj
+        );
 
-              if (
-                nomeFornecedor == "" ||
-                email == "" ||
-                telefone == "" ||
-                whatsapp == ""
-              ) {
-                alert("Preencha todos os campos");
-                return;
-              } else {
-                let resultado = await envio(
-                  "http://localhost:3000/cadasto/fornecedor",
-                  fornecedorobj
-                );
-
-                if (resultado == 1) {
-                  alert(`${nomeFornecedor} já existe`);
-                } else if (resultado == 3) {
-                  alert("Erro");
-                } else {
-                  alert(`${nomeFornecedor} cadastrado com sucesso`);
-                }
-              }
-            } catch (error) {
-              console.log(error);
-            }
-          });
+        if (resultado == 1) {
+          alert(`${fornecedorobj.nome} já existe`);
+        } else if (resultado == 3) {
+          alert("Erro no cadastro");
+        } else {
+          alert(`${fornecedorobj.nome} cadastrado com sucesso`);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    });
       });
       // rede.addEventListener("click", () => {
       //   tela_cadastro.innerHTML = " ";
@@ -1693,7 +1750,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
           });
 
-        const dadosFornecedor = await receber("nome", "fornecedor");
+        const dadosFornecedor = await receber("nome", "fornecedores");
         const fornecedorSelect = document.getElementById("selectFornecedor");
         dadosFornecedor.forEach((fornecedores) => {
           fornecedorSelect.innerHTML += `<option>${fornecedores.nome}</option>`;
